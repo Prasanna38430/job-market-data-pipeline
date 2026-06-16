@@ -1,0 +1,58 @@
+
+=== Top 10 Job Categories ===
+  10  Software Development
+   5  Product Management
+   4  All others
+   3  Sales
+   2  Writing
+   2  Data and Analytics
+   2  Artificial Intelligence
+   1  Medical
+   1  Marketing
+   1  Customer Service
+
+=== Top 15 Skills / Tags ===
+  17  AI/ML
+  13  REST
+  12  php
+  12  UI/UX
+  12  github
+  12  react
+  12  marketplace
+  11  frontend
+  11  research
+  11  backend
+  11  security
+  11  AWS
+  10  jira
+  10  react native
+  10  documentation
+
+=== Jobs Posted in the Last 7 Days ===
+2026-06-14  Tech Lead Full-Stack Rails Engineer @ Mitre Media
+2026-06-12  Business Transformation Lead @ Expion Health
+2026-06-12  Head of Engineering @ Lemon.io
+2026-06-12  Assistant Account Payable @ The Obesity Society
+2026-06-11  Office Assistant @ Coalition Technologies
+2026-06-11  Senior Data Scientist @ Lemon.io
+2026-06-11  Quality Assurance Rater - German (Germany) @ TELUS Digital
+2026-06-09  iOS Developer @ nooro
+2026-06-09  High-Ticket Financial Sales Specialist & Team Lead Track @ FSE LLC
+
+=== Companies With Most Open Listings ===
+  10  LawnStarter
+   4  TELUS Digital
+   2  Lemon.io
+   2  Coalition Technologies
+   2  A.Team
+   1  nooro
+   1  Workada
+   1  The Obesity Society
+   1  The Land Geek
+   1  Mitre Media
+
+=== Job Type Breakdown ===
+  21  full_time
+   4  part_time
+   3  freelance
+   3  contract
