@@ -67,8 +67,8 @@ and the external database are just snapshots of that clean table.
 
 ```bash
 # 1. get the code
-git clone <your-repo-url>
-cd job-market-scraper
+git clone https://github.com/Prasanna38430/job-market-data-pipeline.git
+cd job-market-data-pipeline
 
 # 2. set up a virtual environment and install dependencies
 python -m venv .venv
