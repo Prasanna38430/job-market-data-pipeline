@@ -14,16 +14,23 @@ run is reproducible. Then it **transforms** the data with Pandas —
 renaming fields, stripping whitespace, flattening the tags list, parsing
 dates, and dropping duplicates and incomplete rows. Next it **loads** the
 clean records into a SQLite table, only inserting jobs it hasn't seen
-before, and exports the full table to a CSV. Finally `analytics.py`
-runs a set of queries against the database to show what the job market
-looks like.
+before, and exports the full table to whatever formats you ask for
+(CSV, Parquet, JSON) and optionally to an external database. Finally
+`analytics.py` runs a set of queries against the database to show what
+the job market looks like.
+
+SQLite is the source of truth — it handles deduplication across runs.
+The file exports and the external database are just snapshots of that
+clean table.
 
 ## Tech stack
 
 - Python 3.x
 - Requests (HTTP calls)
 - Pandas (data cleaning)
-- SQLite (local storage)
+- SQLite (local storage, dedup)
+- PyArrow (Parquet export)
+- SQLAlchemy + python-dotenv (optional Postgres/MySQL export)
 - Logging (pipeline monitoring)
 
 ## How to run
@@ -39,7 +46,7 @@ python -m venv .venv
 source .venv/bin/activate     # on mac/linux
 pip install -r requirements.txt
 
-# 3. run the full pipeline (fetches 100 jobs by default)
+# 3. run the full pipeline (fetches 100 jobs, saves a CSV by default)
 python pipeline.py
 
 # fetch a different number of jobs
@@ -48,6 +55,34 @@ python pipeline.py --limit 250
 # 4. run the analytics
 python analytics.py
 ```
+
+### Choosing output formats
+
+Use `--format` to pick one or more file formats (comma separated):
+
+```bash
+python pipeline.py --format csv              # default
+python pipeline.py --format parquet
+python pipeline.py --format csv,parquet,json
+```
+
+Files land in `data/processed/` as `jobs_clean.csv`, `jobs_clean.parquet`,
+and so on.
+
+### Saving to an external database (Postgres or MySQL)
+
+Use `--db` to also push the clean table to Postgres or MySQL:
+
+```bash
+python pipeline.py --db postgres
+python pipeline.py --format parquet --db mysql
+```
+
+Credentials are read from a `.env` file (copy `.env.example` to `.env`
+and fill it in). If anything is missing and you're running by hand, the
+pipeline asks for it in the terminal — the password is typed hidden and
+never written to the log. This keeps secrets out of the code and out of
+git, and lets the pipeline still run unattended on a schedule.
 
 ## Project structure
 
@@ -58,15 +93,18 @@ job-market-scraper/
 │   ├── logger.py      shared logging config (console + file)
 │   ├── extract.py     calls the Remotive API, saves raw JSON
 │   ├── transform.py   cleans and dedupes the data with Pandas
-│   └── load.py        inserts into SQLite, exports CSV
+│   ├── load.py        incremental insert into SQLite, returns clean table
+│   ├── export.py      writes the table to csv / parquet / json
+│   └── database.py    pushes the table to Postgres or MySQL
 ├── analytics.py       runs the analytics queries and prints results
 ├── pipeline.py        runs extract -> transform -> load end to end
 ├── data/
 │   ├── raw/           raw JSON responses, one file per run
-│   ├── processed/     jobs_clean.csv export
+│   ├── processed/     jobs_clean.* exports
 │   └── jobs.db        SQLite database (created at runtime)
 ├── logs/              pipeline.log
 ├── requirements.txt
+├── .env.example       template for database credentials
 ├── .gitignore
 └── README.md
 ```
