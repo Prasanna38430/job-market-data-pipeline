@@ -12,7 +12,7 @@ log = get_logger("extract")
 
 API_URL = "https://remotive.com/api/remote-jobs"
 RAW_DIR = os.path.join("data", "raw")
-HEADERS = {"User-Agent": "job-market-scraper/1.0"}
+HEADERS = {"User-Agent": "job-market-data-pipeline/1.0"}
 
 
 def extract(limit=100):

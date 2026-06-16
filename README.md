@@ -23,7 +23,8 @@ You can see real output without running anything:
 
 ## Sample report
 
-This is actual output, not made up:
+A trimmed view of a real run. The full report is in
+[examples/analytics_output.txt](examples/analytics_output.txt):
 
 ```
 === Top 10 Job Categories ===
@@ -32,6 +33,7 @@ This is actual output, not made up:
    4  All others
    3  Sales
    2  Data and Analytics
+   ...
 
 === Top 15 Skills / Tags ===
   17  AI/ML
@@ -39,6 +41,7 @@ This is actual output, not made up:
   12  react
   12  github
   11  backend
+   ...
 
 === Job Type Breakdown ===
   21  full_time
@@ -127,7 +130,7 @@ date formatting, and tag flattening.
 ## Project structure
 
 ```
-job-market-scraper/
+job-market-data-pipeline/
 ├── scraper/
 │   ├── logger.py      shared logging config (console + file)
 │   ├── extract.py     calls the Remotive API, saves raw JSON
