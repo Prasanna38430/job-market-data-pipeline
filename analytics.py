@@ -1,3 +1,5 @@
+"""Runs the report queries against the SQLite database and prints the results."""
+
 import sqlite3
 from collections import Counter
 

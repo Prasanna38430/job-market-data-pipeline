@@ -1,3 +1,5 @@
+"""Logging setup shared by every module - writes to both the console and logs/pipeline.log."""
+
 import logging
 import os
 

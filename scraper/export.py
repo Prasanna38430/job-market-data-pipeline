@@ -1,3 +1,5 @@
+"""Writes the clean table out to csv, parquet, or json."""
+
 import os
 
 from scraper.logger import get_logger

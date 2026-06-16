@@ -1,3 +1,5 @@
+"""Runs the whole pipeline end to end: extract, transform, load, then export."""
+
 import argparse
 import time
 
@@ -11,6 +13,7 @@ log = get_logger("pipeline")
 
 
 def run(limit=100, formats=("csv",), db=None):
+    """Run the pipeline once: fetch jobs, clean them, store them, and export."""
     start = time.time()
 
     raw_jobs = extract(limit=limit)
@@ -29,6 +32,7 @@ def run(limit=100, formats=("csv",), db=None):
 
 
 def parse_formats(value):
+    """Turn the --format string into a clean list and reject anything we don't support."""
     formats = [f.strip().lower() for f in value.split(",") if f.strip()]
     bad = [f for f in formats if f not in VALID_FORMATS]
     if bad:

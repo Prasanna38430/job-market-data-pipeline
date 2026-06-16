@@ -1,3 +1,5 @@
+"""Pulls remote job listings from the Remotive API and saves the raw response."""
+
 import os
 import json
 from datetime import datetime
@@ -40,6 +42,7 @@ def extract(limit=100):
 
 
 def _save_raw(payload):
+    """Save the API response to its own timestamped file so each run keeps a copy."""
     os.makedirs(RAW_DIR, exist_ok=True)
     timestamp = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
     path = os.path.join(RAW_DIR, f"jobs_raw_{timestamp}.json")

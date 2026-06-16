@@ -1,3 +1,5 @@
+"""Cleans the raw job data and gets it into a tidy table ready to store."""
+
 from datetime import datetime
 
 import pandas as pd

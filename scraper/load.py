@@ -1,3 +1,5 @@
+"""Saves the clean jobs into SQLite, skipping ones we already have from earlier runs."""
+
 import os
 import sqlite3
 

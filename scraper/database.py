@@ -1,3 +1,5 @@
+"""Pushes the clean table into Postgres or MySQL, with credentials from a .env file."""
+
 import os
 import sys
 import getpass
